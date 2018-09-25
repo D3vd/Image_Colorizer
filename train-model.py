@@ -40,20 +40,38 @@ def generate_subsquares(img_path):
         U[k] /= point_count[k]
         V[k] /= point_count[k]
 
+    # Compute The Sub Square
+
+    # Create Template
+    subsquare = np.zeros(n_segments, SQUARE_SIZE * SQUARE_SIZE)
+
+    # Calculate the Sub Square
+    for k in range(n_segments):
+        top = max(int(centroids[k][0]), 0)
+        if top + SQUARE_SIZE >= img.shape[0]:
+            top = img.shape[0] - 1 - SQUARE_SIZE
+        left = max(int(centroids[k][1]), 0)
+        if left + SQUARE_SIZE >= img.shape[1]:
+            left = img.shape[1] - 1 - SQUARE_SIZE
+        for i in range(0, SQUARE_SIZE):
+            for j in range(0, SQUARE_SIZE):
+                subsquare[k][i * SQUARE_SIZE + j] = yuv_values[i + top][j + left][0]
+        subsquare[k] = np.fft.fft2(subsquare[k].reshape(SQUARE_SIZE, SQUARE_SIZE)).reshape(SQUARE_SIZE * SQUARE_SIZE)
+
+    return subsquare, U, V
+
 
 if __name__ == '__main__':
 
     # Iterating through images in dataset
-    # for image in os.listdir(dataset_loc):
-    #
-    #     # Ignore non image files
-    #     if not image.endswith('.jpg'):
-    #         continue
-    #
-    #     print('Training on {}....'.format(image))
-    #
-    #     subsquares, U, V = generate_subsquares(image)
+    for image in os.listdir(dataset_loc):
 
-    file = dataset_loc + '29553856137.jpg'
-    print(generate_subsquares(file))
+        # Ignore non image files
+        if not image.endswith('.jpg'):
+            continue
+
+        print('Training on {}....'.format(image))
+
+        subsquares, U, V = generate_subsquares(image)
+
 

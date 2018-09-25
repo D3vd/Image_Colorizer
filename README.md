@@ -12,20 +12,54 @@ Modules Involved -
 
 ## Process Explanation
 
-1. Segmentation - 
+### Training The Model
 
-   Segmentation is done to change the representation of the image into something that is more meaningful and easier to analyze.
+1. Generating Sub squares -
 
-   Functions used - 
+   For a given image generate the following -
 
-   ```python
-   skimage.util.img_as_float()
-   skimage.data.imread()
-   skimage.segmentation.slic()
-   ```
+   - Array of subsquares
 
-2. Generating Sub squares -
+   - Array containing average U values for the sub squares
 
-   For a given image 
+   - Array containing average V values for the sub squares
 
-3. d
+
+   1. Segmentation - 
+
+      Segmentation is done to change the representation of the image into something that is more meaningful and easier to analyze.
+
+      Functions used - 
+
+      ```python
+      skimage.util.img_as_float()
+      skimage.data.imread()
+      skimage.segmentation.slic()
+      ```
+
+   2.  Get YUV Values - 
+      From the RGB values that were found from the segmentation process calculate the YUV values using the conversion matrix.
+    
+      [Formula Explanantion](https://www.pcmag.com/encyclopedia/term/55166/yuv-rgb-conversion-formulas)
+    
+      Use `np.dot()`to calculate [dot product](https://www.tutorialspoint.com/numpy/numpy_dot.htm).
+
+   3. Find n_segments -
+
+      The N segment of the image will be the maximum value in the segments array plus 1.
+
+   4. Computing Centroids -
+
+      Create  templates of U, V, centroids and point_count using [np.zeros()](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html)
+
+      Iterate through the segments array with the help of [np.ndenumerate()](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html) and calculate each element in the arrays.
+
+      Calculate Centroids, U and V with the help of point_count.
+
+   5. Calculate the Sub Square - 
+
+      Create a template for the Sub Square.
+
+      Calculate the sub square using fourier transform with the help of [np.ftt.ftt2](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html)
+
+
