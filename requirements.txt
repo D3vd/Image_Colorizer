@@ -1,3 +1,4 @@
 requests
 numpy
 scikit-image
+scipy
