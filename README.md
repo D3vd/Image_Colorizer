@@ -4,8 +4,8 @@
 
 Modules Involved -
 
-- <b>get-images</b> -- Design a web scraper to  get images of landscapes that will end up becoming the data set.  
-- <b>train-model</b> -- Utilize Support Vector Regressions to segment and train on the dataset based on YUV colorspace.
+- <del><b>get-images</b> -- Design a web scraper to  get images of landscapes that will end up becoming the data set.  </del>
+- <del><b>train-model</b> -- Utilize Support Vector Regressions to segment and train on the dataset based on YUV colorspace.</del>
 - <b>test-model</b> -- Use multiple layers of SVR on test image then apply Markov Random Fields to find hidden chrominance values and generate an output.  
 
 
@@ -65,10 +65,13 @@ Modules Involved -
 2. Train Models - 
 
     1. Training the base model - 
-        
+       
         Using [sklearn.svm.SVR()](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html) train the base models using [SVM](https://cs.adelaide.edu.au/~chhshen/teaching/ML_SVR.pdf) with constant values of C and Epsilon.
-     
+
     2. Fitting the Model - 
-    
-        Using the [fit()]() function, [fit](https://www.quora.com/What-does-fitting-a-model-mean-in-data-science) the base model using X, U_L and V_L.
-    
+
+        Using the [fit()](http://scikit-learn.org/stable/modules/generated/sklearn.svm.libsvm.fit.html) function, [fit](https://www.quora.com/What-does-fitting-a-model-mean-in-data-science) the base model using X, U_L and V_L.
+
+### Testing the Model
+
+1. 
