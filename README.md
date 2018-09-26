@@ -62,4 +62,13 @@ Modules Involved -
 
       Calculate the sub square using fourier transform with the help of [np.ftt.ftt2](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html)
 
-2. 
+2. Train Models - 
+
+    1. Training the base model - 
+        
+        Using [sklearn.svm.SVR()](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html) train the base models using [SVM](https://cs.adelaide.edu.au/~chhshen/teaching/ML_SVR.pdf) with constant values of C and Epsilon.
+     
+    2. Fitting the Model - 
+    
+        Using the [fit()]() function, [fit](https://www.quora.com/What-does-fitting-a-model-mean-in-data-science) the base model using X, U_L and V_L.
+    

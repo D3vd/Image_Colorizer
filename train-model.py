@@ -94,6 +94,8 @@ if __name__ == '__main__':
         U_L = np.concatenate((U_L, U), axis=0)
         V_L = np.concatenate((V_L, V), axis=0)
 
+        print()
+
     print('Fitting the model given by C = {}, Epsilon = {}'.format(C, EPSILON))
 
     # Training the Model
@@ -110,7 +112,3 @@ if __name__ == '__main__':
     joblib.dump(u_svr, models_loc+'u_svr.model')
     joblib.dump(v_svr, models_loc+'v_svr.model')
     print('Models saved at "{}"'.format(models_loc))
-
-
-
-
