@@ -1,5 +1,4 @@
 import os
-import numpy as np
 
 from sklearn.svm import SVR
 from sklearn.externals import joblib
@@ -13,8 +12,7 @@ models_loc = 'models/'
 
 def get_yuv_values(img):
     # Function to get the YUV values from RGB values
-    conversion_matrix = np.array([[0.299, 0.587, 0.114], [-0.14713, -0.28886, 0.436], [0.615, -0.51499, -0.10001]]).T
-    return np.dot(img, conversion_matrix)
+    return np.dot(img, YUV_FROM_RGB)
 
 
 def generate_subsquares(img_path):
