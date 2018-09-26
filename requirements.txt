@@ -2,3 +2,5 @@ requests
 numpy
 scikit-image
 scipy
+sklearn
+scikit-learn

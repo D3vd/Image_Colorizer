@@ -1,1 +1,4 @@
 SQUARE_SIZE = 10
+
+C = .125
+EPSILON = .0625

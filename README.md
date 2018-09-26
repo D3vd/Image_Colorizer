@@ -40,9 +40,9 @@ Modules Involved -
    2.  Get YUV Values - 
       From the RGB values that were found from the segmentation process calculate the YUV values using the conversion matrix.
     
-      [Formula Explanantion](https://www.pcmag.com/encyclopedia/term/55166/yuv-rgb-conversion-formulas)
+        [Formula Explanantion](https://www.pcmag.com/encyclopedia/term/55166/yuv-rgb-conversion-formulas)
     
-      Use `np.dot()`to calculate [dot product](https://www.tutorialspoint.com/numpy/numpy_dot.htm).
+        Use `np.dot()`to calculate [dot product](https://www.tutorialspoint.com/numpy/numpy_dot.htm).
 
    3. Find n_segments -
 
@@ -62,4 +62,4 @@ Modules Involved -
 
       Calculate the sub square using fourier transform with the help of [np.ftt.ftt2](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html)
 
-
+2. 

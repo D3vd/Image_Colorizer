@@ -1,10 +1,14 @@
 import os
 import numpy as np
 
+from sklearn.svm import SVR
+from sklearn.externals import joblib
+
 from image_preprocessing import segment_image
 from constants import *
 
 dataset_loc = 'dataset/'
+models_loc = 'models/'
 
 
 def get_yuv_values(img):
@@ -43,7 +47,7 @@ def generate_subsquares(img_path):
     # Compute The Sub Square
 
     # Create Template
-    subsquare = np.zeros(n_segments, SQUARE_SIZE * SQUARE_SIZE)
+    subsquare = np.zeros((n_segments, SQUARE_SIZE * SQUARE_SIZE))
 
     # Calculate the Sub Square
     for k in range(n_segments):
@@ -63,6 +67,11 @@ def generate_subsquares(img_path):
 
 if __name__ == '__main__':
 
+    # Create Empty Arrays
+    X = np.array([]).reshape(0, SQUARE_SIZE * SQUARE_SIZE)
+    U_L = np.array([])
+    V_L = np.array([])
+
     # Iterating through images in dataset
     for image in os.listdir(dataset_loc):
 
@@ -72,6 +81,36 @@ if __name__ == '__main__':
 
         print('Training on {}....'.format(image))
 
-        subsquares, U, V = generate_subsquares(image)
+        # Find the Sub Square of the image
+        try:
+            subsquares, U, V = generate_subsquares(dataset_loc + image)
+
+        except ValueError as e:
+            print('Error while training {}'.format(image))
+            continue
+
+        # Concatenate the respective arrays
+        X = np.concatenate((X, subsquares), axis=0)
+        U_L = np.concatenate((U_L, U), axis=0)
+        V_L = np.concatenate((V_L, V), axis=0)
+
+    print('Fitting the model given by C = {}, Epsilon = {}'.format(C, EPSILON))
+
+    # Training the Model
+    u_svr = SVR(C=C, epsilon=EPSILON)
+    v_svr = SVR(C=C, epsilon=EPSILON)
+
+    # Fitting the Model
+    print('Fitting U_SVR')
+    u_svr.fit(X, U_L)
+    print('Fitting V_SVR')
+    v_svr.fit(X, V_L)
+
+    # Saving the Models
+    joblib.dump(u_svr, models_loc+'u_svr.model')
+    joblib.dump(v_svr, models_loc+'v_svr.model')
+    print('Models saved at "{}"'.format(models_loc))
+
+
 
 
