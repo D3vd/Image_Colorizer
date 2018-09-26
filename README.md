@@ -2,16 +2,18 @@
 
 Python program that converts a Black & White image to Colored. Uses various ML algorithms such as SVR to predict the color of each pixel. 
 
+![Demo](https://i.imgur.com/RdlvDu7.jpg)
+
 ## Setup
 
 1. <b>Install Necessary Packages</b>
-    
+   
     All the necessary packages can be installed by using pip:
     
     `pip install -r requirements.txt`
-     
-2. <b>Download Dataset</b>
     
+2. <b>Download Dataset</b>
+   
     The dataset required to train the model can be created with the help of the web scraper included.
     
     `python get-images.py`
@@ -27,10 +29,9 @@ Python program that converts a Black & White image to Colored. Uses various ML a
 4. <b>Test the Model</b>
 
     In order to test the model you need to pass a black and white as input:
-    
+
     `python test-model.py <image_name>`
-   
-    
+
 ## Process Explanation
 
 ### Training The Model
