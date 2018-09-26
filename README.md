@@ -1,15 +1,36 @@
 # Image Colorizer
 
-## Checklist:
+Python program that converts a Black & White image to Colored. Uses various ML algorithms such as SVR to predict the color of each pixel. 
 
-Modules Involved -
+## Setup
 
-- <del><b>get-images</b> -- Design a web scraper to  get images of landscapes that will end up becoming the data set.  </del>
-- <del><b>train-model</b> -- Utilize Support Vector Regressions to segment and train on the dataset based on YUV colorspace.</del>
-- <b>test-model</b> -- Use multiple layers of SVR on test image then apply Markov Random Fields to find hidden chrominance values and generate an output.  
+1. <b>Install Necessary Packages</b>
+    
+    All the necessary packages can be installed by using pip:
+    
+    `pip install -r requirements.txt`
+     
+2. <b>Download Dataset</b>
+    
+    The dataset required to train the model can be created with the help of the web scraper included.
+    
+    `python get-images.py`
+    
+    The script is designed to go on an unlimited loop, terminate the script when necessary amount of images have been downloaded.
+    
+3. <b>Train the Model</b>
 
+    The model can be easily trained by running the train-model script
+    
+    `python train-model.py`
 
+4. <b>Test the Model</b>
 
+    In order to test the model you need to pass a black and white as input:
+    
+    `python test-model.py <image_name>`
+   
+    
 ## Process Explanation
 
 ### Training The Model
@@ -72,6 +93,11 @@ Modules Involved -
 
         Using the [fit()](http://scikit-learn.org/stable/modules/generated/sklearn.svm.libsvm.fit.html) function, [fit](https://www.quora.com/What-does-fitting-a-model-mean-in-data-science) the base model using X, U_L and V_L.
 
-### Testing the Model
+## Checklist:
 
-1. 
+Modules Involved -
+
+- <del><b>get-images</b> -- Design a web scraper to  get images of landscapes that will end up becoming the data set.  </del>
+- <del><b>train-model</b> -- Utilize Support Vector Regressions to segment and train on the dataset based on YUV colorspace.</del>
+- <del><b>test-model</b> -- Use multiple layers of SVR on test image then apply Markov Random Fields to find hidden chrominance values and generate an output.</del>  
+

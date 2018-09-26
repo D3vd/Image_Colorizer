@@ -14,6 +14,9 @@ if __name__ == '__main__':
     except IndexError:
         image_path = input('Image: ')
 
+    image_name = image_path.replace('.jpg', '')
+    output_file = 'output/' + image_name + '_SLIC_segments.jpg'
+
     img = img_as_float(imread(image_path))
     segments_slic = slic(img, n_segments=250, compactness=10, sigma=1)
 
@@ -21,6 +24,6 @@ if __name__ == '__main__':
     ax = fig.add_subplot(1, 1, 1)
     ax.imshow(mark_boundaries(img, segments_slic))
     plt.axis("off")
-    plt.savefig('out.jpg')
+    plt.savefig(output_file)
 
 
