@@ -2,7 +2,7 @@
 
 Python program that converts a Black & White image to Colored. Uses various ML algorithms such as SVR to predict the color of each pixel. 
 
-![Demo](https://i.imgur.com/RdlvDu7.jpg)
+![Demo](https://i.imgur.com/bFGoxCj.jpg)
 
 ## Setup
 
